@@ -1,4 +1,7 @@
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const useAppPassword = Boolean(process.env.GMAIL_APP_PASSWORD);
 const authConfig = useAppPassword
@@ -14,9 +17,13 @@ const authConfig = useAppPassword
       refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
     };
 
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: authConfig,
+  service: 'gmail',
+  auth: {
+    user: process.env.GOOGLE_USER,     // Your actual Gmail address
+    pass: process.env.GMAIL_APP_PASSWORD       // The 16-character App Password you copied
+  }
 });
 
 transporter.verify()
