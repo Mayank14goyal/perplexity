@@ -23,7 +23,7 @@ async function handleLogin({email,password}){
         const data = await login({email,password})
         dispatch(setUser(data.user))
     }catch(err){
-        dispatch(setError(err.response?.data?.message || "Login failed"))
+        dispatch(setError(err.responce?.data?.message || "Login failed"))
     }finally{
         dispatch(setLoading(false))
     }
@@ -37,7 +37,7 @@ async function handleGetMe(){
     }catch(err){
         dispatch(setError(err.responce?.data?.message) || "failed to fatch userData")
     }finally{
-        setLoading(false)
+        dispatch(setLoading(false))
     }
     }
 

@@ -16,12 +16,14 @@
     "@langchain/google-genai": "^2.1.31",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
     "dotenv": "^16.6.1",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "gitignore": "^0.7.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^7.7.0",
+    "morgan": "^1.11.0",
     "nodemailer": "^8.0.10"
   }
 }

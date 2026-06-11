@@ -14,12 +14,12 @@ export async function register({email, username, password}){
 
 export async function login({email,password}){
 
-    const response = await api.post("/api/post/register",{email,password})
+    const response = await api.post("/api/auth/register",{email,password})
 
     return response.data
 }
 
 export async function getMe(){
-    const response = await api.get("/api/aut/getMe")
+    const response = await api.get("/api/auth/getMe")
     return response.data
 }

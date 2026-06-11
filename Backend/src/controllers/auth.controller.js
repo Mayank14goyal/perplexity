@@ -51,9 +51,12 @@ export async function register(req, res) {
     return res.status(201).json({
         message: "User registered successfully",
         success: true,
-        verified: user.verified,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
+        user:{
+            id: user._id,
+            verified: user.verified,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+        }
     })
 }
 
@@ -66,8 +69,7 @@ export async function register(req, res) {
 
 export async function verifyEmail(req, res) {
         const { token } = req.query;
-        try {
-            jwt.verify(token, process.env.JWT_SECRET);      
+        try {     
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             const user = await userModel.findOne({ email: decoded.email });
             if (!user) {
@@ -130,7 +132,7 @@ export async function login(req, res) {
     if(!user.verified){
         return res.status(400).json({
             message:"please verify your email before logging",
-            secess:     false,
+            success: false,
             err: "incorrect password"
         })
     }
@@ -161,7 +163,7 @@ export async function getMe(req,res){
     const user = await userModel.findById(userID).select("-password")
 
     if(!user){
-        return res.statuse(404).json({
+        return res.status(404).json({
             message:"user not found",
             statuse: false,
             err: "use not foune"

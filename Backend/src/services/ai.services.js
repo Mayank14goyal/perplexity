@@ -10,5 +10,5 @@ const model = new ChatGoogleGenerativeAI({
 
 export async function testAi(){
     const response = await model.invoke("what is ai explain under 100 words?");
-    console.log(response.content);
+    // console.log(response.content);
 }       
