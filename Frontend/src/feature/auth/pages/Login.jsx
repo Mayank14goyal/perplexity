@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
-import { useAuth } from "../../hook/useAuth.js"
+import { useAuth } from "../hook/useAuth.js"
+import { useSelector } from "react-redux"
+import { Navigate } from "react-router"
 
 const Login = () => {
   const { handleLogin } = useAuth()
@@ -10,6 +12,9 @@ const Login = () => {
     email: '',
     password: ''
   })
+
+  const user = useSelector(state =>state.auth.user)
+  // const loading = useSelector(state=>state.auth.loading)
 
   const navigate = useNavigate()
 
@@ -25,6 +30,10 @@ const Login = () => {
     event.preventDefault()
     await handleLogin(formData)
     navigate("/")
+  }
+
+  if(user){
+    return <Navigate to="/" replace />
   }
 
   return (
@@ -67,7 +76,7 @@ const Login = () => {
             type="submit"
             className="w-full rounded-2xl bg-slate-800 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-slate-700"
           >
-            Sign In
+            Log In
           </button>
         </form>
 

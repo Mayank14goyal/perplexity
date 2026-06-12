@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { register, login, getMe } from "../auth/services/auth.api.js";
-import { setUser, setLoading, setError } from "../auth/auth.slice.js"
+import { register, login, getMe } from "../services/auth.api.js";
+import { setUser, setLoading, setError } from "../auth.slice.js"
 
 export function useAuth(){
 const dispatch = useDispatch()
@@ -21,7 +21,7 @@ async function handleLogin({email,password}){
     try{
         dispatch(setLoading(true))
         const data = await login({email,password})
-        dispatch(setUser(data.user))
+        dispatch(setUser(data))
     }catch(err){
         dispatch(setError(err.responce?.data?.message || "Login failed"))
     }finally{
